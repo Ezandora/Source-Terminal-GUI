@@ -12,6 +12,11 @@ svn checkout https://github.com/Ezandora/Source-Terminal-GUI/branches/Release/
 </pre>
 
 
+Notes
+----------------
+If you want to disable the GUI while keeping it installed, type "set disable_source_terminal_gui=true" in the GCLI. To re-enable, "set disable_source_terminal_gui=false".
+
+
 Screenshots
 ----------------
 [![Educate](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/educate.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/educate.png)
