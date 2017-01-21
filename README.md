@@ -1,4 +1,4 @@
-Source-Terminal-GUI
+Source Terminal GUI
 =====
 Visual interface replacement for the Source Terminal IOTM from Kingdom of Loathing. Requires KoLmafia.
 
