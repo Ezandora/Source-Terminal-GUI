@@ -3293,7 +3293,7 @@ boolean today_is_pvp_season_end()
     return false;
 }
 //Libary import could be changed in the future; right now it includes a bunch of things we don't need and a few things we do.
-string __version = "1.0.2a1";
+string __version = "1.0.2";
 
 boolean __setting_enabled = !get_property("disable_source_terminal_gui").to_boolean();
 
@@ -4020,13 +4020,7 @@ void handleButtonClicked(string page_name, string button_title)
 		//print_html("terminal_command = " + terminal_command);
 		
 		buffer terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
-		boolean testing = false;
-		if (my_id() == 613940)
-		{
-			testing = true;
-			print_html("terminal_text = \"" + terminal_text.entity_encode() + "\"");
-		}
-		if (!terminal_text.contains_text("bgcolor=blue><b>Source Terminal</b></td>") && !testing) //they've left the choice adventure - reload it, and resubmit
+		if (!terminal_text.contains_text("<b>Source Terminal</b>")) //they've left the choice adventure - reload it, and resubmit
 		{
 			visit_url("campground.php?action=terminal");
 			terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
