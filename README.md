@@ -11,7 +11,7 @@ svn checkout https://github.com/Ezandora/Source-Terminal-GUI/branches/Release/
 
 Screenshots
 ----------------
-[![Educate](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/educate.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/educate.png)
-[![Enhance](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/enhance.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/enhance.png)
-[![Extrude](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/extrude.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/extrude.png)
-[![Enquiry](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/enquiry.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/Images/enquiry.png)
+[![Educate](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/educate.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/educate.png)
+[![Enhance](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/enhance.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/enhance.png)
+[![Extrude](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/extrude.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/extrude.png)
+[![Enquiry](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/enquiry.png)](https://raw.github.com/Ezandora/Source-Terminal-GUI/master/images/enquiry.png)
