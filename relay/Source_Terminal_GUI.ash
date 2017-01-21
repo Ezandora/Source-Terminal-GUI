@@ -3293,7 +3293,7 @@ boolean today_is_pvp_season_end()
     return false;
 }
 //Libary import could be changed in the future; right now it includes a bunch of things we don't need and a few things we do.
-string __version = "1.0";
+string __version = "1.0.1";
 
 boolean __setting_enabled = !get_property("disable_source_terminal_gui").to_boolean();
 
