@@ -1,6 +1,8 @@
 Source-Terminal-GUI
 =====
-Visual interface for the Source Terminal IOTM from Kingdom of Loathing.
+Visual interface replacement for the Source Terminal IOTM from Kingdom of Loathing. Requires KoLmafia.
+
+Uses the [Choice Override library](https://github.com/Ezandora/Choice-Override).
 
 Installation
 ----------------
