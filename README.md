@@ -4,6 +4,7 @@ Visual interface for the Source Terminal IOTM from Kingdom of Loathing
 
 Installation
 ----------------
+Run this command in the graphical CLI in KoLmafia:
 <pre>
 svn checkout https://github.com/Ezandora/Source-Terminal-GUI/branches/Release/
 </pre>
