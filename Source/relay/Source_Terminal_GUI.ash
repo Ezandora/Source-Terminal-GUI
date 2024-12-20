@@ -6,7 +6,7 @@ import "relay/Guide/Support/HTML.ash";
 import "relay/Guide/Support/Strings.ash"
 import "relay/Guide/Support/Library.ash"
 //Libary import could be changed in the future; right now it includes a bunch of things we don't need and a few things we do.
-string __version = "1.0.2";
+string __version = "1.0.5";
 
 boolean __setting_enabled = !get_property("disable_source_terminal_gui").to_boolean();
 
@@ -401,7 +401,7 @@ buffer generateSourceTerminalRightSides()
 	//Educate:
 	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/syringe2.gif", "Extract", "Extract source essence", "", active_skills[$skill[extract]], false));
 	int total_duplicate_uses_available = 1;
-	if (my_path_id() == PATH_THE_SOURCE)
+	if (my_path().id == PATH_THE_SOURCE)
 		total_duplicate_uses_available = 5;
 	int duplicate_uses_remaining = clampi(total_duplicate_uses_available - get_property_int("_sourceTerminalDuplicateUses"), 0, total_duplicate_uses_available);
 	int overheated_turns_remaining = $effect[Overheated].have_effect();
@@ -409,7 +409,7 @@ buffer generateSourceTerminalRightSides()
 	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/10101.gif", "Digitise", "Arrow Monster", digitise_description, active_skills[$skill[digitize]], digitisations_remaining == 0));
 	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/golddice.gif", "Duplicate", "Doubles items dropped", total_duplicate_uses_available == 1 ? "Once/day" : pluraliseWordy(duplicate_uses_remaining, "cast", "casts").capitaliseFirstLetter() + " left", active_skills[$skill[duplicate]], duplicate_uses_remaining == 0));
 	int portscan_uses_remaining = clampi(3 - get_property_int("_sourceTerminalPortscanUses"), 0, 3);
-	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/plug.gif", "Portscan", my_path_id() == PATH_THE_SOURCE ? "Lures Source Agent" : "Lures Government Agent", (portscan_uses_remaining > 0 ? pluralise(portscan_uses_remaining, "more use", "uses remaining") : ""), active_skills[$skill[portscan]], portscan_uses_remaining == 0));
+	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/plug.gif", "Portscan", my_path().id == PATH_THE_SOURCE ? "Lures Source Agent" : "Lures Government Agent", (portscan_uses_remaining > 0 ? pluralise(portscan_uses_remaining, "more use", "uses remaining") : ""), active_skills[$skill[portscan]], portscan_uses_remaining == 0));
 	button_data["Educate"].listAppend(SourceTerminalButtonDisplayMake("images/itemimages/braces.gif", "Compress", "Damages monster", "", active_skills[$skill[compress]], false)); //reticle.gif
 	//Enhance:
 	boolean have_enhancements_remaining = __enhancements_remaining > 0;
@@ -635,7 +635,7 @@ void handleSourceTerminalChoiceOverride(string page_text)
 	
 	buffer core_addition = generateSourceTerminalCore(true);
 	page_text_out = page_text_out.replace_string("<div id=\"term\">", core_addition.to_string() + "<div id=\"term\" style=\"visibility:hidden;\">");
-	page_text_out = page_text_out.replace_string("bgcolor=blue><b>Source Terminal</b></td>", "bgcolor=blue><b>Source Terminal GUI v" + __version + "</b></td>");
+	page_text_out = page_text_out.replace_string("Source Terminal</b></td>", "Source Terminal GUI v" + __version + "</b></td>");
 	page_text_out = page_text_out.replace_string("$('#text').text('');", "$('#text').text(''); objDiv.style.visibility = 'visible';"); //HACK: reset visibility when they execute a command
 	//This is due to using visibility to hide the regular terminal.
 	//We could also use z-index, which we've tried, but it has side effects that require managing.
@@ -733,7 +733,7 @@ void handleButtonClicked(string page_name, string button_title)
 		//print_html("terminal_command = " + terminal_command);
 		
 		buffer terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
-		if (!terminal_text.contains_text("<b>Source Terminal</b>")) //they've left the choice adventure - reload it, and resubmit
+		if (!terminal_text.contains_text("Source Terminal</b>")) //they've left the choice adventure - reload it, and resubmit
 		{
 			visit_url("campground.php?action=terminal");
 			terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
