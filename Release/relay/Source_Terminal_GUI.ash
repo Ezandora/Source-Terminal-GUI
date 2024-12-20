@@ -2059,12 +2059,13 @@ boolean numberIsInRangeInclusive(int v, int min, int max)
 }
 
 
-buffer to_buffer(string str)
+//now built-in:
+/*buffer to_buffer(string str)
 {
 	buffer result;
 	result.append(str);
 	return result;
-}
+}*/
 
 buffer copyBuffer(buffer buf)
 {
@@ -2650,6 +2651,9 @@ static
     int PATH_QUANTUM_TERRARIUM = 42;
     int PATH_QUANTUM = 42;
     int PATH_WILDFIRE = 43;
+    //missing paths here
+    int PATH_SHRUNKEN_ADVENTURER = 49;
+    int PATH_SMALL = 49;
 }
 
 float numeric_modifier_replacement(item it, string modifier_name)
@@ -3063,6 +3067,15 @@ boolean [skill] makeConstantSkillArrayMutable(boolean [skill] array)
 boolean [effect] makeConstantEffectArrayMutable(boolean [effect] array)
 {
     boolean [effect] result;
+    foreach k in array
+        result[k] = array[k];
+    
+    return result;
+}
+
+boolean [int] makeConstantIntArrayMutable(boolean [int] array)
+{
+    boolean [int] result;
     foreach k in array
         result[k] = array[k];
     
@@ -4717,7 +4730,7 @@ boolean locationIsEventSpecific(location l)
 	return false;
 }
 //Libary import could be changed in the future; right now it includes a bunch of things we don't need and a few things we do.
-string __version = "1.0.4";
+string __version = "1.0.5";
 
 boolean __setting_enabled = !get_property("disable_source_terminal_gui").to_boolean();
 
@@ -5346,7 +5359,7 @@ void handleSourceTerminalChoiceOverride(string page_text)
 	
 	buffer core_addition = generateSourceTerminalCore(true);
 	page_text_out = page_text_out.replace_string("<div id=\"term\">", core_addition.to_string() + "<div id=\"term\" style=\"visibility:hidden;\">");
-	page_text_out = page_text_out.replace_string("bgcolor=blue><b>Source Terminal</b></td>", "bgcolor=blue><b>Source Terminal GUI v" + __version + "</b></td>");
+	page_text_out = page_text_out.replace_string("Source Terminal</b></td>", "Source Terminal GUI v" + __version + "</b></td>");
 	page_text_out = page_text_out.replace_string("$('#text').text('');", "$('#text').text(''); objDiv.style.visibility = 'visible';"); //HACK: reset visibility when they execute a command
 	//This is due to using visibility to hide the regular terminal.
 	//We could also use z-index, which we've tried, but it has side effects that require managing.
@@ -5444,7 +5457,7 @@ void handleButtonClicked(string page_name, string button_title)
 		//print_html("terminal_command = " + terminal_command);
 		
 		buffer terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
-		if (!terminal_text.contains_text("<b>Source Terminal</b>")) //they've left the choice adventure - reload it, and resubmit
+		if (!terminal_text.contains_text("Source Terminal</b>")) //they've left the choice adventure - reload it, and resubmit
 		{
 			visit_url("campground.php?action=terminal");
 			terminal_text = visit_url("choice.php?whichchoice=1191&option=1&input=" + terminal_command + "&pwd=" + my_hash());
